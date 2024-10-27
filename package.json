@@ -1,0 +1,29 @@
+{
+  "name": "project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+ "scripts": {
+  "dev": "nodemon api/index.js",
+  "start": "node api/index.js"
+},
+
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/atikhasan007/new_Projoct-.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/atikhasan007/new_Projoct-/issues"
+  },
+  "homepage": "https://github.com/atikhasan007/new_Projoct-#readme",
+  "dependencies": {
+    "express": "^4.21.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  }
+}
