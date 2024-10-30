@@ -2,6 +2,7 @@
 import dotenv from 'dotenv';
 import express from 'express';
 import mongoose from 'mongoose';
+import authRouter from './routes/auth.route.js';
 import userRouter from './routes/user.route.js';
 dotenv.config(); // Ensure this line is present at the top
 
@@ -16,6 +17,7 @@ mongoose.connect(process.env.MONGO).then(() => {
 
 
 const app = express();
+app.use(express.json());
 
 
 
@@ -24,3 +26,4 @@ app.listen(port, ()=> {
 });
 
 app.use('/api/user', userRouter);
+app.use('/api/auth',authRouter);
