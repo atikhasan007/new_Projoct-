@@ -7,13 +7,14 @@ import { signInSuccess } from '../redux/user/userSlice';
 export default function OAuth() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    
     const handleGoogleClick = async () => {
         try {
-            const provider = new GoogleAuthProvider()
-            const auth = getAuth(app)
-            const result = await signInWithPopup(auth, provider)
+            const provider = new GoogleAuthProvider();
+            const auth = getAuth(app);
+            const result = await signInWithPopup(auth, provider);
 
-            // Check if result is returned correctly
+            // Ensure the user data is returned correctly
             if (result.user) {
                 const res = await fetch('/api/auth/google', {
                     method: 'POST',
@@ -23,15 +24,17 @@ export default function OAuth() {
                     body: JSON.stringify({
                         name: result.user.displayName,
                         email: result.user.email,
-                        photo: result.user.photoURL,
+                        photo: result.user.photoURL // Send the photo URL for avatar
                     }),
-                })
+                });
 
-             
-                
                 const data = await res.json();
-                dispatch(signInSuccess(data));
-                navigate('/');
+                if (data.success) {
+                    dispatch(signInSuccess(data.user)); // Ensure you're dispatching the correct user data
+                    navigate('/'); // Redirect to home page or desired page
+                } else {
+                    console.error("Error signing in:", data.message);
+                }
             }
         } catch (error) {
             console.error('Could not sign in with Google:', error);
@@ -48,3 +51,6 @@ export default function OAuth() {
         </button>
     );
 }
+
+
+

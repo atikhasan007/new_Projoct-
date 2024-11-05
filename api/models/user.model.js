@@ -1,32 +1,29 @@
-
-
-
 import mongoose from 'mongoose';
 
 const userSchema = new mongoose.Schema({
     username: {
         type: String,
-        required: true,
+        required: false, // Set to `false` for OAuth users
         unique: true,
-
     },
     email: {
         type: String,
         required: true,
         unique: true,
-        
     },
     password: {
         type: String,
-        required: true,
-        
+        required: false, // Set to `false` for OAuth users
     },
-    avatar:{
-        type:String,
-        default: "https://media.istockphoto.com/id/1300845620/vector/user-icon-flat-isolated-on-white-background-user-symbol-vector-illustration.jpg?s=612x612&w=0&k=20&c=yBeyba0hUkh14_jgv1OKqIH0CCSWU_4ckRkAoy2p73o="
+    avatar: {
+        type: String,
+        default:"https://w7.pngwing.com/pngs/831/88/png-transparent-user-profile-computer-icons-user-interface-mystique-miscellaneous-user-interface-design-smile-thumbnail.png", // New default URL
     },
-    
-},{ timestamps: true });
+}, { timestamps: true });
 
-const User = mongoose.model('User',userSchema);
+const User = mongoose.model('User', userSchema);
 export default User;
+
+
+
+
